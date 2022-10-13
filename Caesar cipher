@@ -1,0 +1,30 @@
+from string import ascii_lowercase as asc, ascii_uppercase as ascu
+
+rus = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
+w_s = input('Введите текст: ')
+w_sl = w_s.lower()
+direction = input('sh or d: ').lower()
+lang = input('rus or eng: ').lower()
+step = int(input('шаг сдвига: '))
+if direction == 'sh':
+    if lang == 'eng':
+        t = list(map(lambda x: asc[(asc.find(x)+step)% 26] if x in asc else x, w_sl))
+    elif lang == 'rus':
+        t = list(map(lambda x: rus[(rus.find(x) + step) % 32] if x in rus else x, w_sl))
+elif direction == 'd':
+    if lang == 'eng':
+        t = list(map(lambda x: asc[(asc.find(x) - step) % 26] if x in asc else x, w_sl))
+    elif lang == 'rus':
+        t = list(map(lambda x: rus[(rus.find(x) - step) % 32] if x in rus else x, w_sl))
+if lang == 'eng':
+    for i in range(len(w_s)):
+        if w_s[i] in ascu:
+            print(t[i].upper(), end='')
+        else:
+            print(t[i], end='')
+elif lang == 'rus':
+    for i in range(len(w_s)):
+        if w_s[i] in 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ':
+            print(t[i].upper(), end='')
+        else:
+            print(t[i], end='')
